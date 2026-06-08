@@ -1,3 +1,111 @@
+
+function ProfilePage({ user, onLogout }) {
+  const [stats, setStats] = useState({ xp: 0, skills: 0, quizzes: 0 });
+  const [topSkills, setTopSkills] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadStats();
+  }, []);
+
+  const loadStats = async () => {
+    const { data } = await supabase.from("user_progress").select("*").eq("user_id", user.id);
+    if (data) {
+      const totalXP = data.reduce((a, r) => a + (r.xp || 0), 0);
+      const uniqueSkills = [...new Set(data.map(r => r.skill))].length;
+      const quizzes = data.length;
+      setStats({ xp: totalXP, skills: uniqueSkills, quizzes });
+      const skillMap = {};
+      data.forEach(r => {
+        if (!skillMap[r.skill]) skillMap[r.skill] = { xp: 0, count: 0, domain: r.domain };
+        skillMap[r.skill].xp += r.xp || 0;
+        skillMap[r.skill].count += 1;
+      });
+      const top = Object.entries(skillMap).sort((a,b) => b[1].xp - a[1].xp).slice(0,6);
+      setTopSkills(top);
+    }
+    setLoading(false);
+  };
+
+  const levelInfo = (xp) => {
+    if (xp >= 500) return { label: "Diamond 👑", color: "#8b5cf6" };
+    if (xp >= 200) return { label: "Platinum 💎", color: "#06b6d4" };
+    if (xp >= 100) return { label: "Gold 🥇", color: "#f59e0b" };
+    if (xp >= 50) return { label: "Silver 🥈", color: "#9ca3af" };
+    return { label: "Bronze 🥉", color: "#cd7f32" };
+  };
+
+  const lvl = levelInfo(stats.xp);
+
+  return (
+    <div style={{ width: "100%", padding: "48px 5vw", fontFamily: "'Outfit', sans-serif" }}>
+      <div style={{ maxWidth: 800, margin: "0 auto" }}>
+        {/* Profile header */}
+        <div style={{ background: "linear-gradient(135deg,#f5f3ff,#eff6ff)", border: "1px solid #e5e7eb", borderRadius: 24, padding: 40, marginBottom: 24, display: "flex", alignItems: "center", gap: 28, flexWrap: "wrap" }}>
+          <div style={{ width: 88, height: 88, borderRadius: "50%", background: "linear-gradient(135deg,#8b5cf6,#0ea5e9)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 36, fontWeight: 900, color: "#fff", flexShrink: 0 }}>
+            {user.email?.charAt(0).toUpperCase()}
+          </div>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: 26, fontWeight: 900, color: "#111827", marginBottom: 4 }}>{user.user_metadata?.full_name || "Utilizator"}</div>
+            <div style={{ fontSize: 14, color: "#9ca3af", marginBottom: 10 }}>{user.email}</div>
+            <div style={{ display: "inline-block", background: "#fff", border: `1px solid ${lvl.color}40`, borderRadius: 20, padding: "4px 14px", fontSize: 13, fontWeight: 700, color: lvl.color }}>
+              {lvl.label}
+            </div>
+          </div>
+          <button onClick={onLogout} style={{ background: "#fff1f2", border: "1px solid #fecdd3", borderRadius: 10, padding: "10px 20px", color: "#f43f5e", fontWeight: 700, fontSize: 14, cursor: "pointer" }}>
+            Deconectează-te
+          </button>
+        </div>
+
+        {/* Stats */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 24 }}>
+          {[
+            { label: "XP Total", value: stats.xp.toLocaleString(), color: "#8b5cf6", bg: "#f5f3ff", icon: "⚡" },
+            { label: "Skills evaluate", value: stats.skills, color: "#0ea5e9", bg: "#f0f9ff", icon: "🎯" },
+            { label: "Quiz-uri trecute", value: stats.quizzes, color: "#10b981", bg: "#ecfdf5", icon: "✅" }
+          ].map(s => (
+            <div key={s.label} style={{ background: s.bg, border: `1px solid ${s.color}20`, borderRadius: 16, padding: 24, textAlign: "center" }}>
+              <div style={{ fontSize: 28, marginBottom: 6 }}>{s.icon}</div>
+              <div style={{ fontSize: 32, fontWeight: 900, color: s.color }}>{loading ? "..." : s.value}</div>
+              <div style={{ fontSize: 12, color: "#9ca3af", marginTop: 4 }}>{s.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Top skills */}
+        {topSkills.length > 0 && (
+          <div style={{ background: "#fff", border: "1px solid #f3f4f6", borderRadius: 20, padding: 28, boxShadow: "0 2px 8px rgba(0,0,0,0.05)" }}>
+            <div style={{ fontSize: 18, fontWeight: 800, marginBottom: 20, color: "#111827" }}>🏆 Top Skills</div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px,1fr))", gap: 12 }}>
+              {topSkills.map(([skill, data], i) => (
+                <div key={skill} style={{ background: "#f9fafb", border: "1px solid #e5e7eb", borderRadius: 14, padding: 16 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+                    <span style={{ fontSize: 16 }}>{["🥇","🥈","🥉","4️⃣","5️⃣","6️⃣"][i]}</span>
+                    <span style={{ fontSize: 14, fontWeight: 700, color: "#111827" }}>{skill}</span>
+                  </div>
+                  <div style={{ fontSize: 12, color: "#9ca3af", marginBottom: 8 }}>{data.domain}</div>
+                  <div style={{ fontSize: 20, fontWeight: 900, color: "#8b5cf6" }}>+{data.xp} XP</div>
+                  <div style={{ height: 4, background: "#e5e7eb", borderRadius: 4, marginTop: 8, overflow: "hidden" }}>
+                    <div style={{ height: "100%", width: `${Math.min(100,(data.xp/200)*100)}%`, background: "linear-gradient(90deg,#8b5cf6,#0ea5e9)", borderRadius: 4 }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {topSkills.length === 0 && !loading && (
+          <div style={{ background: "#f9fafb", border: "1px solid #e5e7eb", borderRadius: 20, padding: 40, textAlign: "center" }}>
+            <div style={{ fontSize: 40, marginBottom: 12 }}>🎯</div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: "#374151", marginBottom: 6 }}>Niciun skill evaluat încă</div>
+            <div style={{ fontSize: 14, color: "#9ca3af" }}>Completează primul quiz pentru a vedea progresul tău!</div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 import { useState, useEffect } from "react";
 import { supabase } from "./supabase";
 import Auth from "./Auth";
