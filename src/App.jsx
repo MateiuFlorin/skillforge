@@ -109,6 +109,7 @@ function ProfilePage({ user, onLogout }) {
 import { useState, useEffect } from "react";
 import { supabase } from "./supabase";
 import Badges from "./Badges";
+import Professionals from "./Professionals";
 import Auth from "./Auth";
 import Quiz from "./Quiz";
 
@@ -190,7 +191,7 @@ export default function App() {
           <span style={{ fontWeight: 800, fontSize: 20, color: "#111827" }}>Skill<span style={{ background: "linear-gradient(135deg,#8b5cf6,#0ea5e9)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Forge</span></span>
         </div>
         <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
-          {[{id:"home",label:"🏠 Home"},{id:"explore",label:"🔍 Explore"},{id:"badges",label:"🏅 Badges"},{id:"profile",label:"👤 Profil"}].map(p => (
+          {[{id:"home",label:"🏠 Home"},{id:"explore",label:"🔍 Explore"},{id:"badges",label:"🏅 Badges"},{id:"professionals",label:"👨‍🏫 Profesioniști"},{id:"profile",label:"👤 Profil"}].map(p => (
             <button key={p.id} onClick={() => setPage(p.id)} style={{ background: page===p.id ? "#f5f3ff" : "transparent", border: "none", borderRadius: 8, padding: "8px 16px", color: page===p.id ? "#8b5cf6" : "#6b7280", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "'Outfit', sans-serif", transition: "all 0.2s" }}>
               {p.label}
             </button>
@@ -291,6 +292,14 @@ export default function App() {
       )}
 
       {/* PROFILE */}
+      {page === "professionals" && (
+        <div style={{ width: "100%", padding: "48px 5vw" }}>
+          <h2 style={{ fontSize: 26, fontWeight: 800, marginBottom: 6, color: "#111827" }}>👨‍🏫 Profesioniști</h2>
+          <p style={{ color: "#6b7280", marginBottom: 32 }}>Experți verificați de comunitate care pot evalua proiectele tale</p>
+          <Professionals user={user} />
+        </div>
+      )}
+
       {page === "badges" && (
         <div style={{ width: "100%", padding: "48px 5vw" }}>
           <h2 style={{ fontSize: 26, fontWeight: 800, marginBottom: 6, color: "#111827" }}>🏅 Badge-uri & Rewards</h2>
