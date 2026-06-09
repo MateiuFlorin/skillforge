@@ -96,7 +96,7 @@ export default function Professionals({ user }) {
           { id: "browse", label: "🔍 Explorează" },
           { id: "apply", label: myProfile ? "✏️ Editează Profil" : "➕ Aplică ca Profesionist" }
         ].map(t => (
-          <button key={t.id} onClick={() => setTab(t.id)} style={{ background: "transparent", border: "none", borderBottom: tab === t.id ? "2px solid #8b5cf6" : "2px solid transparent", padding: "10px 20px", color: tab === t.id ? "#8b5cf6" : "#6b7280", fontWeight: tab === t.id ? 700 : 500, fontSize: 14, cursor: "pointer", fontFamily: "'Outfit', sans-serif", marginBottom: -1 }}>
+          <button key={t.id} onClick={() => setTab(t.id)} style={{ background: "transparent", border: "none", borderBottom: tab === t.id ? "2px solid #8b5cf6" : "2px solid transparent", padding: "10px 20px", color: tab === t.id ? "#f59e0b" : "#6b7280", fontWeight: tab === t.id ? 700 : 500, fontSize: 14, cursor: "pointer", fontFamily: "'Outfit', sans-serif", marginBottom: -1 }}>
             {t.label}
           </button>
         ))}
@@ -107,11 +107,11 @@ export default function Professionals({ user }) {
         <div>
           {/* Filter */}
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 24 }}>
-            <button onClick={() => setFilter("all")} style={{ background: filter === "all" ? "#8b5cf6" : "#f9fafb", border: "1px solid #e5e7eb", borderRadius: 20, padding: "6px 16px", fontSize: 12, fontWeight: 700, cursor: "pointer", color: filter === "all" ? "#fff" : "#374151" }}>
+            <button onClick={() => setFilter("all")} style={{ background: filter === "all" ? "#f59e0b" : "#f9fafb", border: "1px solid #e5e7eb", borderRadius: 20, padding: "6px 16px", fontSize: 12, fontWeight: 700, cursor: "pointer", color: filter === "all" ? "#fff" : "#374151" }}>
               Toate
             </button>
             {DOMAINS.map(d => (
-              <button key={d} onClick={() => setFilter(d)} style={{ background: filter === d ? "#8b5cf6" : "#f9fafb", border: "1px solid #e5e7eb", borderRadius: 20, padding: "6px 16px", fontSize: 12, fontWeight: 600, cursor: "pointer", color: filter === d ? "#fff" : "#374151" }}>
+              <button key={d} onClick={() => setFilter(d)} style={{ background: filter === d ? "#f59e0b" : "#f9fafb", border: "1px solid #e5e7eb", borderRadius: 20, padding: "6px 16px", fontSize: 12, fontWeight: 600, cursor: "pointer", color: filter === d ? "#fff" : "#374151" }}>
                 {d.split(" ")[0]} {d.split(" ").slice(1).join(" ")}
               </button>
             ))}
@@ -124,7 +124,7 @@ export default function Professionals({ user }) {
               <div style={{ fontSize: 40, marginBottom: 12 }}>👨‍🏫</div>
               <div style={{ fontSize: 16, fontWeight: 700, color: "#374151", marginBottom: 6 }}>Niciun profesionist încă</div>
               <div style={{ fontSize: 14, color: "#9ca3af", marginBottom: 20 }}>Fii primul care aplică!</div>
-              <button onClick={() => setTab("apply")} style={{ background: "#8b5cf6", border: "none", borderRadius: 10, padding: "10px 24px", color: "#fff", fontWeight: 700, cursor: "pointer" }}>
+              <button onClick={() => setTab("apply")} style={{ background: "#f59e0b", border: "none", borderRadius: 10, padding: "10px 24px", color: "#fff", fontWeight: 700, cursor: "pointer" }}>
                 Aplică acum
               </button>
             </div>
@@ -137,7 +137,7 @@ export default function Professionals({ user }) {
                 return (
                   <div key={prof.id} style={{ background: "#fff", border: "1px solid #f3f4f6", borderRadius: 20, padding: 24, boxShadow: "0 2px 8px rgba(0,0,0,0.05)" }}>
                     <div style={{ display: "flex", alignItems: "flex-start", gap: 14, marginBottom: 16 }}>
-                      <div style={{ width: 52, height: 52, borderRadius: "50%", background: "linear-gradient(135deg,#8b5cf6,#0ea5e9)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, fontWeight: 900, color: "#fff", flexShrink: 0 }}>
+                      <div style={{ width: 52, height: 52, borderRadius: "50%", background: "linear-gradient(135deg,#f59e0b,#fbbf24)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, fontWeight: 900, color: "#fff", flexShrink: 0 }}>
                         {prof.name.charAt(0).toUpperCase()}
                       </div>
                       <div style={{ flex: 1 }}>
@@ -150,7 +150,7 @@ export default function Professionals({ user }) {
 
                     <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 16 }}>
                       {(prof.domains || []).map(d => (
-                        <span key={d} style={{ background: "#f5f3ff", border: "1px solid #ede9fe", borderRadius: 20, padding: "3px 10px", fontSize: 11, color: "#8b5cf6", fontWeight: 600 }}>
+                        <span key={d} style={{ background: "#fffbeb", border: "1px solid #ede9fe", borderRadius: 20, padding: "3px 10px", fontSize: 11, color: "#f59e0b", fontWeight: 600 }}>
                           {d.split(" ")[0]} {d.split(" ").slice(1).join(" ")}
                         </span>
                       ))}
@@ -158,7 +158,7 @@ export default function Professionals({ user }) {
 
                     <div style={{ display: "flex", gap: 8 }}>
                       {prof.linkedin && <a href={prof.linkedin} target="_blank" rel="noreferrer" style={{ flex: 1, background: "#f0f9ff", border: "1px solid #bae6fd", borderRadius: 8, padding: "8px", textAlign: "center", fontSize: 12, color: "#0ea5e9", fontWeight: 700, textDecoration: "none" }}>LinkedIn</a>}
-                      {prof.portfolio && <a href={prof.portfolio} target="_blank" rel="noreferrer" style={{ flex: 1, background: "#f5f3ff", border: "1px solid #ddd6fe", borderRadius: 8, padding: "8px", textAlign: "center", fontSize: 12, color: "#8b5cf6", fontWeight: 700, textDecoration: "none" }}>Portfolio</a>}
+                      {prof.portfolio && <a href={prof.portfolio} target="_blank" rel="noreferrer" style={{ flex: 1, background: "#fffbeb", border: "1px solid #ddd6fe", borderRadius: 8, padding: "8px", textAlign: "center", fontSize: 12, color: "#f59e0b", fontWeight: 700, textDecoration: "none" }}>Portfolio</a>}
                     </div>
 
                     {prof.user_id !== user.id && (
@@ -196,7 +196,7 @@ export default function Professionals({ user }) {
       {/* APPLY */}
       {tab === "apply" && (
         <div style={{ maxWidth: 600 }}>
-          <div style={{ background: "#f5f3ff", border: "1px solid #ede9fe", borderRadius: 16, padding: 20, marginBottom: 28, fontSize: 14, color: "#6b7280", lineHeight: 1.6 }}>
+          <div style={{ background: "#fffbeb", border: "1px solid #ede9fe", borderRadius: 16, padding: 20, marginBottom: 28, fontSize: 14, color: "#6b7280", lineHeight: 1.6 }}>
             💡 Aplică ca profesionist și comunitatea va vota. Dacă obții peste 70% voturi pozitive, devii profesionist verificat și poți evalua alți utilizatori.
           </div>
 
@@ -221,13 +221,13 @@ export default function Professionals({ user }) {
               <label style={{ fontSize: 13, fontWeight: 700, color: "#374151", marginBottom: 10, display: "block" }}>Domenii de expertiză * (alege cel puțin unul)</label>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                 {DOMAINS.map(d => (
-                  <button key={d} onClick={() => toggleDomain(d)} style={{ background: form.domains.includes(d) ? "#8b5cf6" : "#f9fafb", border: `1px solid ${form.domains.includes(d) ? "#8b5cf6" : "#e5e7eb"}`, borderRadius: 20, padding: "7px 16px", fontSize: 13, fontWeight: 600, cursor: "pointer", color: form.domains.includes(d) ? "#fff" : "#374151", transition: "all 0.2s" }}>
+                  <button key={d} onClick={() => toggleDomain(d)} style={{ background: form.domains.includes(d) ? "#f59e0b" : "#f9fafb", border: `1px solid ${form.domains.includes(d) ? "#f59e0b" : "#e5e7eb"}`, borderRadius: 20, padding: "7px 16px", fontSize: 13, fontWeight: 600, cursor: "pointer", color: form.domains.includes(d) ? "#fff" : "#374151", transition: "all 0.2s" }}>
                     {d}
                   </button>
                 ))}
               </div>
             </div>
-            <button onClick={handleApply} disabled={submitting} style={{ background: submitting ? "#e5e7eb" : "#8b5cf6", border: "none", borderRadius: 12, padding: "14px", color: submitting ? "#9ca3af" : "#fff", fontWeight: 800, fontSize: 15, cursor: submitting ? "not-allowed" : "pointer", marginTop: 8, fontFamily: "'Outfit', sans-serif" }}>
+            <button onClick={handleApply} disabled={submitting} style={{ background: submitting ? "#e5e7eb" : "#f59e0b", border: "none", borderRadius: 12, padding: "14px", color: submitting ? "#9ca3af" : "#fff", fontWeight: 800, fontSize: 15, cursor: submitting ? "not-allowed" : "pointer", marginTop: 8, fontFamily: "'Outfit', sans-serif" }}>
               {submitting ? "Se trimite..." : myProfile ? "Actualizează Profilul" : "Aplică ca Profesionist →"}
             </button>
           </div>

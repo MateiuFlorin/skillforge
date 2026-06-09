@@ -28,7 +28,7 @@ function ProfilePage({ user, onLogout }) {
   };
 
   const levelInfo = (xp) => {
-    if (xp >= 500) return { label: "Diamond 👑", color: "#8b5cf6" };
+    if (xp >= 500) return { label: "Diamond 👑", color: "#f59e0b" };
     if (xp >= 200) return { label: "Platinum 💎", color: "#06b6d4" };
     if (xp >= 100) return { label: "Gold 🥇", color: "#f59e0b" };
     if (xp >= 50) return { label: "Silver 🥈", color: "#9ca3af" };
@@ -42,7 +42,7 @@ function ProfilePage({ user, onLogout }) {
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
         {/* Profile header */}
         <div style={{ background: "linear-gradient(135deg,#f5f3ff,#eff6ff)", border: "1px solid #e5e7eb", borderRadius: 24, padding: 40, marginBottom: 24, display: "flex", alignItems: "center", gap: 28, flexWrap: "wrap" }}>
-          <div style={{ width: 88, height: 88, borderRadius: "50%", background: "linear-gradient(135deg,#8b5cf6,#0ea5e9)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 36, fontWeight: 900, color: "#fff", flexShrink: 0 }}>
+          <div style={{ width: 88, height: 88, borderRadius: "50%", background: "linear-gradient(135deg,#f59e0b,#fbbf24)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 36, fontWeight: 900, color: "#fff", flexShrink: 0 }}>
             {user.email?.charAt(0).toUpperCase()}
           </div>
           <div style={{ flex: 1 }}>
@@ -60,7 +60,7 @@ function ProfilePage({ user, onLogout }) {
         {/* Stats */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 24 }}>
           {[
-            { label: "XP Total", value: stats.xp.toLocaleString(), color: "#8b5cf6", bg: "#f5f3ff", icon: "⚡" },
+            { label: "XP Total", value: stats.xp.toLocaleString(), color: "#f59e0b", bg: "#fffbeb", icon: "⚡" },
             { label: "Skills evaluate", value: stats.skills, color: "#0ea5e9", bg: "#f0f9ff", icon: "🎯" },
             { label: "Quiz-uri trecute", value: stats.quizzes, color: "#10b981", bg: "#ecfdf5", icon: "✅" }
           ].map(s => (
@@ -84,7 +84,7 @@ function ProfilePage({ user, onLogout }) {
                     <span style={{ fontSize: 14, fontWeight: 700, color: "#111827" }}>{skill}</span>
                   </div>
                   <div style={{ fontSize: 12, color: "#9ca3af", marginBottom: 8 }}>{data.domain}</div>
-                  <div style={{ fontSize: 20, fontWeight: 900, color: "#8b5cf6" }}>+{data.xp} XP</div>
+                  <div style={{ fontSize: 20, fontWeight: 900, color: "#f59e0b" }}>+{data.xp} XP</div>
                   <div style={{ height: 4, background: "#e5e7eb", borderRadius: 4, marginTop: 8, overflow: "hidden" }}>
                     <div style={{ height: "100%", width: `${Math.min(100,(data.xp/200)*100)}%`, background: "linear-gradient(90deg,#8b5cf6,#0ea5e9)", borderRadius: 4 }} />
                   </div>
@@ -117,7 +117,7 @@ const DOMAINS = {
   "💻 Programare": { color: "#0ea5e9", bg: "#f0f9ff", skills: ["JavaScript", "Python", "TypeScript", "React", "Node.js", "SQL", "Java", "C++"] },
   "🎨 Design & Creative": { color: "#f43f5e", bg: "#fff1f2", skills: ["Figma", "Photoshop", "Illustrator", "After Effects", "Blender", "UX Design"] },
   "📊 Data & Analytics": { color: "#f59e0b", bg: "#fffbeb", skills: ["Excel Avansat", "Power BI", "Tableau", "Machine Learning", "Statistics", "R"] },
-  "📣 Marketing & Business": { color: "#8b5cf6", bg: "#f5f3ff", skills: ["SEO", "Google Ads", "Social Media", "Email Marketing", "Copywriting"] },
+  "📣 Marketing & Business": { color: "#f59e0b", bg: "#fffbeb", skills: ["SEO", "Google Ads", "Social Media", "Email Marketing", "Copywriting"] },
   "🎵 Muzică & Audio": { color: "#ec4899", bg: "#fdf2f8", skills: ["Producție Muzicală", "Mixing & Mastering", "Ableton Live", "FL Studio"] },
   "🌐 Limbi Străine": { color: "#10b981", bg: "#ecfdf5", skills: ["Engleză", "Franceză", "Spaniolă", "Germană", "Italiană", "Japoneză"] },
   "🔧 IT & Infrastructură": { color: "#3b82f6", bg: "#eff6ff", skills: ["Linux", "Docker", "Kubernetes", "AWS", "Cybersecurity", "Git"] },
@@ -129,7 +129,7 @@ const LEVELS = [
   { id: "silver", emoji: "🥈", color: "#9ca3af", label: "Silver" },
   { id: "gold", emoji: "🥇", color: "#f59e0b", label: "Gold" },
   { id: "platinum", emoji: "💎", color: "#06b6d4", label: "Platinum" },
-  { id: "diamond", emoji: "👑", color: "#8b5cf6", label: "Diamond" },
+  { id: "diamond", emoji: "👑", color: "#f59e0b", label: "Diamond" },
 ];
 
 export default function App() {
@@ -187,17 +187,17 @@ export default function App() {
       {/* NAV */}
       <nav style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 5vw", borderBottom: "1px solid #f3f4f6", background: "#fff", position: "sticky", top: 0, zIndex: 100, boxShadow: "0 1px 3px rgba(0,0,0,0.06)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <div style={{ width: 36, height: 36, borderRadius: 10, background: "linear-gradient(135deg,#8b5cf6,#0ea5e9)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, color: "#fff", fontSize: 18 }}>S</div>
-          <span style={{ fontWeight: 800, fontSize: 20, color: "#111827" }}>Skill<span style={{ background: "linear-gradient(135deg,#8b5cf6,#0ea5e9)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Forge</span></span>
+          <div style={{ width: 36, height: 36, borderRadius: 10, background: "linear-gradient(135deg,#f59e0b,#fbbf24)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, color: "#fff", fontSize: 18 }}>S</div>
+          <span style={{ fontWeight: 800, fontSize: 20, color: "#111827" }}>Skill<span style={{ background: "linear-gradient(135deg,#f59e0b,#fbbf24)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Forge</span></span>
         </div>
         <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
           {[{id:"home",label:"🏠 Home"},{id:"explore",label:"🔍 Explore"},{id:"badges",label:"🏅 Badges"},{id:"professionals",label:"👨‍🏫 Profesioniști"},{id:"profile",label:"👤 Profil"}].map(p => (
-            <button key={p.id} onClick={() => setPage(p.id)} style={{ background: page===p.id ? "#f5f3ff" : "transparent", border: "none", borderRadius: 8, padding: "8px 16px", color: page===p.id ? "#8b5cf6" : "#6b7280", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "'Outfit', sans-serif", transition: "all 0.2s" }}>
+            <button key={p.id} onClick={() => setPage(p.id)} style={{ background: page===p.id ? "#fffbeb" : "transparent", border: "none", borderRadius: 8, padding: "8px 16px", color: page===p.id ? "#f59e0b" : "#6b7280", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "'Outfit', sans-serif", transition: "all 0.2s" }}>
               {p.label}
             </button>
           ))}
-          <div style={{ display: "flex", alignItems: "center", gap: 8, background: "#f5f3ff", border: "1px solid #ede9fe", borderRadius: 20, padding: "6px 14px", marginLeft: 8 }}>
-            <div style={{ width: 26, height: 26, borderRadius: "50%", background: "linear-gradient(135deg,#8b5cf6,#0ea5e9)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, color: "#fff" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, background: "#fffbeb", border: "1px solid #ede9fe", borderRadius: 20, padding: "6px 14px", marginLeft: 8 }}>
+            <div style={{ width: 26, height: 26, borderRadius: "50%", background: "linear-gradient(135deg,#f59e0b,#fbbf24)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, color: "#fff" }}>
               {user.email?.charAt(0).toUpperCase()}
             </div>
             <span style={{ fontSize: 13, color: "#6b7280", fontWeight: 500 }}>{user.user_metadata?.full_name || user.email}</span>
@@ -210,13 +210,13 @@ export default function App() {
       {page === "home" && (
         <div style={{ width: "100%", animation: "fadeUp 0.5s ease" }}>
           {/* Hero */}
-          <div style={{ width: "100%", textAlign: "center", padding: "80px 5vw 60px", background: "linear-gradient(180deg, #faf5ff 0%, #fff 100%)" }}>
-            <div style={{ display: "inline-block", background: "#f5f3ff", border: "1px solid #ede9fe", borderRadius: 20, padding: "6px 18px", fontSize: 12, fontWeight: 700, color: "#8b5cf6", letterSpacing: 2, textTransform: "uppercase", marginBottom: 24 }}>
+          <div style={{ width: "100%", textAlign: "center", padding: "80px 5vw 60px", background: "linear-gradient(180deg, #fffbeb 0%, #fff 100%)" }}>
+            <div style={{ display: "inline-block", background: "#fffbeb", border: "1px solid #ede9fe", borderRadius: 20, padding: "6px 18px", fontSize: 12, fontWeight: 700, color: "#f59e0b", letterSpacing: 2, textTransform: "uppercase", marginBottom: 24 }}>
               Beta · Gratuit · Fără card
             </div>
             <h1 style={{ fontSize: "clamp(40px, 6vw, 72px)", fontWeight: 900, letterSpacing: -2, margin: "0 0 16px", lineHeight: 1.05, color: "#111827" }}>
               Bine ai venit,{" "}
-              <span style={{ background: "linear-gradient(135deg,#f43f5e,#8b5cf6,#0ea5e9)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              <span style={{ background: "linear-gradient(135deg,#f59e0b,#fbbf24,#f97316)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                 {user.user_metadata?.full_name?.split(" ")[0] || "Warrior"}!
               </span>
             </h1>
@@ -224,7 +224,7 @@ export default function App() {
               Dovedește ce știi cu adevărat. Evaluare reală de AI și profesioniști verificați.
             </p>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-              <button onClick={() => setPage("explore")} style={{ background: "linear-gradient(135deg,#8b5cf6,#0ea5e9)", border: "none", borderRadius: 14, padding: "15px 36px", color: "#fff", fontWeight: 800, fontSize: 16, cursor: "pointer", boxShadow: "0 4px 20px rgba(139,92,246,0.35)", fontFamily: "'Outfit', sans-serif" }}>
+              <button onClick={() => setPage("explore")} style={{ background: "linear-gradient(135deg,#f59e0b,#fbbf24)", border: "none", borderRadius: 14, padding: "15px 36px", color: "#fff", fontWeight: 800, fontSize: 16, cursor: "pointer", boxShadow: "0 4px 20px rgba(245,158,11,0.35)", fontFamily: "'Outfit', sans-serif" }}>
                 Începe Evaluarea →
               </button>
               <button style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: 14, padding: "15px 36px", color: "#374151", fontWeight: 700, fontSize: 16, cursor: "pointer", fontFamily: "'Outfit', sans-serif" }}>
@@ -234,7 +234,7 @@ export default function App() {
 
             {/* Stats */}
             <div style={{ display: "flex", gap: 48, justifyContent: "center", marginTop: 60 }}>
-              {[{n:"8+",label:"Domenii",color:"#8b5cf6"},{n:"70+",label:"Skills",color:"#0ea5e9"},{n:"25",label:"Niveluri per skill",color:"#f59e0b"}].map(s => (
+              {[{n:"8+",label:"Domenii",color:"#f59e0b"},{n:"70+",label:"Skills",color:"#0ea5e9"},{n:"25",label:"Niveluri per skill",color:"#f59e0b"}].map(s => (
                 <div key={s.label} style={{ textAlign: "center" }}>
                   <div style={{ fontSize: 42, fontWeight: 900, color: s.color }}>{s.n}</div>
                   <div style={{ fontSize: 13, color: "#9ca3af", marginTop: 4 }}>{s.label}</div>
@@ -312,7 +312,7 @@ export default function App() {
         <div style={{ width: "100%", padding: "48px 5vw", animation: "fadeUp 0.5s ease" }}>
           <div style={{ maxWidth: 600, background: "#fff", border: "1px solid #f3f4f6", borderRadius: 20, padding: 40, boxShadow: "0 4px 20px rgba(0,0,0,0.06)" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 32 }}>
-              <div style={{ width: 72, height: 72, borderRadius: "50%", background: "linear-gradient(135deg,#8b5cf6,#0ea5e9)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, fontWeight: 900, color: "#fff" }}>
+              <div style={{ width: 72, height: 72, borderRadius: "50%", background: "linear-gradient(135deg,#f59e0b,#fbbf24)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, fontWeight: 900, color: "#fff" }}>
                 {user.email?.charAt(0).toUpperCase()}
               </div>
               <div>
@@ -321,7 +321,7 @@ export default function App() {
               </div>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 32 }}>
-              {[{label:"XP Total",value:"0",color:"#8b5cf6",bg:"#f5f3ff"},{label:"Skills",value:"0",color:"#0ea5e9",bg:"#f0f9ff"},{label:"Quiz-uri",value:"0",color:"#f59e0b",bg:"#fffbeb"}].map(s => (
+              {[{label:"XP Total",value:"0",color:"#f59e0b",bg:"#fffbeb"},{label:"Skills",value:"0",color:"#0ea5e9",bg:"#f0f9ff"},{label:"Quiz-uri",value:"0",color:"#f59e0b",bg:"#fffbeb"}].map(s => (
                 <div key={s.label} style={{ background: s.bg, borderRadius: 14, padding: 20, textAlign: "center" }}>
                   <div style={{ fontSize: 28, fontWeight: 900, color: s.color }}>{s.value}</div>
                   <div style={{ fontSize: 12, color: "#9ca3af", marginTop: 4 }}>{s.label}</div>

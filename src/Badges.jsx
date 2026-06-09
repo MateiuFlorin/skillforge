@@ -61,7 +61,7 @@ export default function Badges({ user }) {
       <div style={{ marginBottom: 32 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
           <div style={{ fontSize: 18, fontWeight: 800, color: "#111827" }}>🏅 Badge-uri câștigate</div>
-          <div style={{ background: "#f5f3ff", border: "1px solid #ede9fe", borderRadius: 20, padding: "2px 10px", fontSize: 13, fontWeight: 700, color: "#8b5cf6" }}>
+          <div style={{ background: "#fffbeb", border: "1px solid #ede9fe", borderRadius: 20, padding: "2px 10px", fontSize: 13, fontWeight: 700, color: "#f59e0b" }}>
             {earnedBadges.length}/{BADGES.length}
           </div>
         </div>
@@ -74,11 +74,11 @@ export default function Badges({ user }) {
         ) : (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px,1fr))", gap: 12 }}>
             {earnedBadges.map(badge => (
-              <div key={badge.id} style={{ background: "linear-gradient(135deg,#f5f3ff,#eff6ff)", border: "1px solid #c4b5fd", borderRadius: 16, padding: 20, textAlign: "center", animation: "pop 0.3s ease", boxShadow: "0 4px 12px rgba(139,92,246,0.15)" }}>
+              <div key={badge.id} style={{ background: "linear-gradient(135deg,#fffbeb,#fff7ed)", border: "1px solid #c4b5fd", borderRadius: 16, padding: 20, textAlign: "center", animation: "pop 0.3s ease", boxShadow: "0 4px 12px rgba(245,158,11,0.15)" }}>
                 <div style={{ fontSize: 36, marginBottom: 8 }}>{badge.icon}</div>
                 <div style={{ fontSize: 14, fontWeight: 800, color: "#111827", marginBottom: 4 }}>{badge.name}</div>
                 <div style={{ fontSize: 11, color: "#6b7280", lineHeight: 1.4 }}>{badge.desc}</div>
-                <div style={{ marginTop: 8, fontSize: 11, color: "#8b5cf6", fontWeight: 700 }}>✓ Câștigat</div>
+                <div style={{ marginTop: 8, fontSize: 11, color: "#f59e0b", fontWeight: 700 }}>✓ Câștigat</div>
               </div>
             ))}
           </div>
