@@ -110,6 +110,8 @@ import { useState, useEffect } from "react";
 import { supabase } from "./supabase";
 import Badges from "./Badges";
 import Professionals from "./Professionals";
+import Messages from "./Messages";
+import Liga from "./Liga";
 import Auth from "./Auth";
 import Quiz from "./Quiz";
 
@@ -191,7 +193,7 @@ export default function App() {
           <span style={{ fontWeight: 800, fontSize: 20, color: "#111827" }}>Skill<span style={{ background: "linear-gradient(135deg,#f59e0b,#fbbf24)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Forge</span></span>
         </div>
         <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
-          {[{id:"home",label:"🏠 Home"},{id:"explore",label:"🔍 Explore"},{id:"badges",label:"🏅 Badges"},{id:"professionals",label:"👨‍🏫 Profesioniști"},{id:"profile",label:"👤 Profil"}].map(p => (
+          {[{id:"home",label:"🏠 Home"},{id:"explore",label:"🔍 Explore"},{id:"badges",label:"🏅 Badges"},{id:"professionals",label:"👨‍🏫 Profesioniști"},{id:"liga",label:"👑 Ligă"},{id:"messages",label:"💬 Mesaje"},{id:"profile",label:"👤 Profil"}].map(p => (
             <button key={p.id} onClick={() => setPage(p.id)} style={{ background: page===p.id ? "#fffbeb" : "transparent", border: "none", borderRadius: 8, padding: "8px 16px", color: page===p.id ? "#f59e0b" : "#6b7280", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "'Outfit', sans-serif", transition: "all 0.2s" }}>
               {p.label}
             </button>
@@ -292,6 +294,20 @@ export default function App() {
       )}
 
       {/* PROFILE */}
+      {page === "liga" && (
+        <div style={{ width: "100%", padding: "48px 5vw" }}>
+          <Liga user={user} />
+        </div>
+      )}
+
+      {page === "messages" && (
+        <div style={{ width: "100%", padding: "32px 5vw" }}>
+          <h2 style={{ fontSize: 26, fontWeight: 800, marginBottom: 6, color: "#111827" }}>💬 Mesaje</h2>
+          <p style={{ color: "#6b7280", marginBottom: 24 }}>Comunică direct cu alți utilizatori și profesioniști</p>
+          <Messages user={user} />
+        </div>
+      )}
+
       {page === "professionals" && (
         <div style={{ width: "100%", padding: "48px 5vw" }}>
           <h2 style={{ fontSize: 26, fontWeight: 800, marginBottom: 6, color: "#111827" }}>👨‍🏫 Profesioniști</h2>
